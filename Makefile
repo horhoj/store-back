@@ -55,7 +55,7 @@ laravel-support-ide:
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan ide-helper:meta
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan ide-helper:models
 
-laravel-cache-clear:
+laravel-cache-clear: laravel-permission
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm php artisan cache:clear
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm php artisan route:clear
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm php artisan view:clear
