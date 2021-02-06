@@ -1,0 +1,75 @@
+version: "3"
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/28
+
+services:
+  #nginx
+  nginx:
+    build:
+      context: docker/nginx
+    ports:
+      - "80:80"
+#      - "443:443"
+    volumes:
+      - ./src:/var/www
+      - ./nginx_logs:/var/log/nginx
+    links:
+      - php_fpm
+    networks:
+      - internal
+  #php
+  php_fpm:
+    build:
+      context: docker/php_fpm
+    environment:
+      XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    volumes:
+      - ./src:/var/www
+      - /home/cool29/tmp_composer:/.composer
+    networks:
+      - internal
+  #database
+  mariadb:
+    build:
+      context: docker/mariadb
+    volumes:
+      - ./db/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+    ports:
+      - 3306:3306
+    networks:
+      - internal
+  #database control
+  phpmyadmin:
+    build:
+      context: docker/phpmyadmin
+    links:
+      - mariadb:db
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+    depends_on:
+      - mariadb
+    networks:
+      - internal
+  #npm
+  node:
+    build:
+      context: docker/nodejs
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      #- NODE_ENV=production
+    volumes:
+      - ./src:/home/node/app
+    tty: true
