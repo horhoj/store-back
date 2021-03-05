@@ -66,6 +66,8 @@ laravel-migrate-and-seed:
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan migrate:fresh
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan db:seed
 
+laravel-db-prepare: laravel-migrate-and-seed laravel-passport-install
+
 laravel-assets-dev:
 	docker-compose exec --user $(shell id -u):$(shell id -g) node npm run watch
 
@@ -74,6 +76,9 @@ laravel-assets-build:
 
 laravel-assets-npm-install:
 	docker-compose exec --user $(shell id -u):$(shell id -g) node npm i
+
+laravel-passport-install:
+	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm php artisan passport:install
 
 #all
 docker-up: docker-down
@@ -111,6 +116,6 @@ install-test-enviroment:
 console-php:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm /bin/bash
 
-console-node:
-	docker-compose exec --user $(shell id -u):$(shell id -g)  node /bin/bash
-
+#console-node:
+	#docker-compose exec --user $(shell id -u):$(shell id -g)  node /bin/bash
+#
