@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'xman@mail.ru',
             'password' => '$2y$10$25k9PqhEe/CKTH3D38mqSu9xVUvLLQW/VqvmqQ/p9tQb8IaxGP6v.',
         ]);
-//        $this->call(ProductSeeder::class);
-//        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(LnkProductCategorySeeder::class);
     }
 }
 

@@ -14,7 +14,17 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-            ->count(20)->create();
+//        Category::factory()
+//            ->count(20)->create();
+
+        $data = [];
+        for ($i = 1; $i <= 3; $i++) {
+            $data[$i] = [
+                'id' => $i,
+                'title' => 'title ' . $i,
+                'description' => 'description ' . $i,
+            ];
+        }
+        Category::insert($data);
     }
 }

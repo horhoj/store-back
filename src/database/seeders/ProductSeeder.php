@@ -14,7 +14,18 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-         Product::factory()
-             ->count(100)->create();
+//         Product::factory()
+//             ->count(100)->create();
+
+        $data = [];
+        for ($i = 1; $i <= 10; $i++) {
+            $data[$i] = [
+                'id' => $i,
+                'title' => 'title ' . $i,
+                'description' => 'description ' . $i,
+                'params' => 'params ' .$i,
+            ];
+        }
+        Product::insert($data);
     }
 }
