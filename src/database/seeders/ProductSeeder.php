@@ -18,12 +18,12 @@ class ProductSeeder extends Seeder
 //             ->count(100)->create();
 
         $data = [];
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $data[$i] = [
                 'id' => $i,
-                'title' => 'title ' . $i,
-                'description' => 'description ' . $i,
-                'params' => 'params ' .$i,
+                'title' => 'Product title ' . $i,
+                'description' => 'Product description ' . $i,
+                'params' => 'Product params ' .$i,
             ];
         }
         Product::insert($data);

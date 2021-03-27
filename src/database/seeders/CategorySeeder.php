@@ -17,14 +17,25 @@ class CategorySeeder extends Seeder
 //        Category::factory()
 //            ->count(20)->create();
 
-        $data = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $data[$i] = [
-                'id' => $i,
-                'title' => 'title ' . $i,
-                'description' => 'description ' . $i,
-            ];
-        }
+        $data = [
+            [
+                'id' => 1,
+                'title' => 'Телефоны',
+                'description' => 'Телефоны, смартфоны, кнопочные телефоны',
+            ],
+            [
+                'id' => 2,
+                'title' => 'Планшеты',
+                'description' => 'Планшеты, планшетные ПК',
+            ],
+            [
+                'id' => 3,
+                'title' => 'компьютеры',
+                'description' => 'компьютеры, ноутбуки',
+            ],
+
+        ];
+
         Category::insert($data);
     }
 }

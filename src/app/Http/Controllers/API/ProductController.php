@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Product;
-use App\Services\Entity\EntityRepository;
+use App\Http\Controllers\Controller;
+use App\repositories\ProductRepository;
+use Illuminate\Http\Request;
 
-class ProductController extends AbstractAPIController
+class ProductController extends Controller
 {
-    public function __construct(EntityRepository $entityRepository, Product $product)
+    /**
+     * @var ProductRepository
+     */
+    private ProductRepository $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
     {
-        parent::__construct($entityRepository, $product);
+        $this->productRepository = $productRepository;
+    }
+
+    public function index()
+    {
+        $data = $this->productRepository->getProducts();
+        return $data;
     }
 }

@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\repositories\CategoryRepository;
 use App\Services\Entity\EntityRepository;
 
-class CategoryController extends AbstractAPIController
+class CategoryController extends Controller
 {
-    public function __construct(EntityRepository $entityRepository, Category $category)
+
+    /**
+     * @var CategoryRepository
+     */
+    private CategoryRepository $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        parent::__construct($entityRepository, $category);
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    public function index()
+    {
+        $data = $this->categoryRepository->getCategory();
+
+        return $data;
     }
 }
