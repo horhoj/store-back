@@ -18,9 +18,16 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->productRepository->getProducts();
+
+        $search = $request['search'] ?? '';
+        $sort_field = $request['sort_field'] ?? 'id';
+        $sort_asc = $request['sort_asc'] ?? 1;
+
+        $data = $this->productRepository->getProducts($search, $sort_field, $sort_asc)
+            ->paginate($request['per_page'] ?? 10)
+            ->toArray();
         return $data;
     }
 }

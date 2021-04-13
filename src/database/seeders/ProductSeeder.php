@@ -14,18 +14,19 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-//         Product::factory()
-//             ->count(100)->create();
+        Product::factory()
+            ->count(100)->create();
 
-        $data = [];
-        for ($i = 1; $i <= 100; $i++) {
-            $data[$i] = [
-                'id' => $i,
-                'title' => 'Product title ' . $i,
-                'description' => 'Product description ' . $i,
-                'params' => 'Product params ' .$i,
-            ];
-        }
-        Product::insert($data);
+//        $data = [];
+//        for ($i = 1; $i <= 98; $i++) {
+//            $numStr = ($i >= 1 && $i < 10) ? '0' . $i : $i;
+//            $data[$i] = [
+//                'id' => $i,
+//                'title' => 't' . $numStr,
+//                'description' => 'd' . $numStr,
+//                'params' => 'p' . $numStr,
+//            ];
+//        }
+//        Product::insert($data);
     }
 }
