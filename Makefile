@@ -4,6 +4,11 @@ db_name_test=db_test
 db_user=root
 db_password=qwerty
 
+init: docker-up composer-install db-create laravel-db-prepare
+
+composer-install:
+	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm composer i
+
 #LARAVEL
 #установка шаблона LARAVEL
 laravel-install-framework:
@@ -116,6 +121,5 @@ install-test-enviroment:
 console-php:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm /bin/bash
 
-#console-node:
-	#docker-compose exec --user $(shell id -u):$(shell id -g)  node /bin/bash
-#
+get-router-list:
+	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan route:list

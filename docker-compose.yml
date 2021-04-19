@@ -61,15 +61,3 @@ services:
       - mariadb
     networks:
       - internal
-  #npm
-#  node:
-#    build:
-#      context: docker/nodejs
-#    user: "node"
-#    working_dir: /home/node/app
-#    environment:
-#      - NODE_ENV=development
-#      - NODE_ENV=production
-#    volumes:
-#      - ./src:/home/node/app
-#    tty: true
