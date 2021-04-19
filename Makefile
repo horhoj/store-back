@@ -4,7 +4,7 @@ db_name_test=db_test
 db_user=root
 db_password=qwerty
 
-init: docker-up composer-install db-create laravel-db-prepare
+init: docker-up composer-install db-create laravel-db-prepare laravel-permission
 
 composer-install:
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm composer i
@@ -43,8 +43,8 @@ laravel-install-debug-panel:
 
 
 laravel-permission:
-	-sudo chmod -R 755 ./src/
-	-sudo chmod -R 777 ./src/storage ./src/backend/bootstrap/cache
+	-chmod -R 755 ./src/
+	-chmod -R 777 ./src/storage ./src/backend/bootstrap/cache
 
 laravel-run-phpunit:
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm ./vendor/bin/phpunit
