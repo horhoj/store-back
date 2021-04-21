@@ -23,7 +23,7 @@ class ProductController extends Controller
 
         $search = $request['search'] ?? '';
         $sort_field = $request['sort_field'] ?? 'id';
-        $sort_asc = $request['sort_asc'] ?? 1;
+        $sort_asc = $request['sort_asc'] ?? '1';
 
         $data = $this->productRepository->getProducts($search, $sort_field, $sort_asc)
             ->paginate($request['per_page'] ?? 10)
