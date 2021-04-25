@@ -30,4 +30,11 @@ class ProductController extends Controller
             ->toArray();
         return $data;
     }
+
+    public function show(Request $request)
+    {
+        $id = $request['product'] ?? 0;
+
+        return $this->productRepository->getProduct($id);
+    }
 }

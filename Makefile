@@ -15,8 +15,8 @@ db-create:
 	docker-compose exec mariadb mysql --user=$(db_user) --password=$(db_password) -e "CREATE DATABASE IF NOT EXISTS $(db_name_test) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
 
 laravel-permission:
-	-chmod -R 755 ./src/
-	-chmod -R 777 ./src/storage ./src/backend/bootstrap/cache
+	-sudo chmod -R 755 ./src/
+	-sudo chmod -R 777 ./src/storage ./src/backend/bootstrap/cache
 
 laravel-run-phpunit:
 	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm ./vendor/bin/phpunit

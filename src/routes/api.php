@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +24,6 @@ Route::prefix('v1')->namespace('App\Http\Controllers\API')->group(function () {
             Route::post('/login', 'LoginController');
         });
     });
-    Route::apiResource('/tests', 'ProductController');
 
     Route::middleware('auth:api')->group(function () {
         Route::namespace('auth')->group(function () {

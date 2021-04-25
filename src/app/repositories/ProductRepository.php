@@ -27,7 +27,11 @@ class ProductRepository
         foreach ($this->searchFields as $searchField) {
             $products = $products->orWhere($searchField, 'like', "%$search%");
         }
-        $products = $products->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc');
-        return $products;
+        return $products->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc');
+    }
+
+    public function getProduct($id) {
+        $products = clone $this->product;
+        return $products->findOrFail($id);
     }
 }
