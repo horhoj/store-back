@@ -34,4 +34,15 @@ class ProductRepository
         $products = clone $this->product;
         return $products->findOrFail($id);
     }
+
+    public function updateProduct ($id, $data ) {
+        $products = clone $this->product;
+        $product = $products->findOrFail($id);
+        $product->fill($data);
+        $product->save();
+        return ['status' => 'ok'];
+
+    }
+
+
 }

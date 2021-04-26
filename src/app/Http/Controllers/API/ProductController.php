@@ -37,4 +37,12 @@ class ProductController extends Controller
 
         return $this->productRepository->getProduct($id);
     }
+
+    public function update(Request $request)
+    {
+        $id = $request['product'] ?? 0;
+        $data = $request->all();
+//        return $id;
+        return $this->productRepository->updateProduct($id, $data);
+    }
 }
