@@ -25,7 +25,7 @@ class ProductFactory extends Factory
         return [
             'title' => 'product title № ' . random_int(10, 99),
             'description' => 'product description № ' . random_int(10, 99),
-            'params' => 'product params № ' . random_int(10, 99),
+//            'params' => 'product params № ' . random_int(10, 99),
         ];
     }
 }
