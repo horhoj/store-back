@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->string('title', 100);
             $table->text('description')->nullable();
-            $table->text('params')->nullable();
+            $table->text('options')->nullable();
         });
     }
 

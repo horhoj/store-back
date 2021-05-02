@@ -13,7 +13,7 @@ class ProductRepository
      * @var Product
      */
     private Product $product;
-    private $searchFields = ['title', 'description', 'params'];
+    private array $searchFields = ['title', 'description', 'options'];
 
     public function __construct(Product $product)
     {
