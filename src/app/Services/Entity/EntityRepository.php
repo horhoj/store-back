@@ -1,17 +1,16 @@
 <?php
 
-
 namespace App\Services\Entity;
 
 use Illuminate\Http\Request;
 
 class EntityRepository
 {
-    const KEY_SORT_FIELD = 'sort-field';
-    const KEY_SORT_REVERSE = 'sort-reverse';
-    const KEY_FIND_FIELD = 'find-field';
-    const KEY_FIND_VALUE = 'find-value';
-    const KEY_PER_PAGE = 'per-page';
+    public const KEY_SORT_FIELD = 'sort-field';
+    public const KEY_SORT_REVERSE = 'sort-reverse';
+    public const KEY_FIND_FIELD = 'find-field';
+    public const KEY_FIND_VALUE = 'find-value';
+    public const KEY_PER_PAGE = 'per-page';
     /**
      * @var Request
      */

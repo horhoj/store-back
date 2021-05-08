@@ -17,8 +17,9 @@ class ProductFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function definition()
     {

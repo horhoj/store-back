@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\repositories;
-
 
 use App\Models\Category;
 
@@ -20,7 +18,6 @@ class CategoryRepository
 
     public function getCategory(): array
     {
-
         $data = $this->category::all()->toArray();
 //        $data = [
 //          [
@@ -29,7 +26,6 @@ class CategoryRepository
 //              'description' => 'description 1',
 //          ]
 //        ];
-
 
         return $data;
     }

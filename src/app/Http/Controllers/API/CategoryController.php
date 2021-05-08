@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\repositories\CategoryRepository;
-use App\Services\Entity\EntityRepository;
 
 class CategoryController extends Controller
 {
-
     /**
      * @var CategoryRepository
      */

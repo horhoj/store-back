@@ -72,6 +72,6 @@ class LnkProductCategorySeeder extends Seeder
             ],
         ];
 
-                LnkProductCategory::insert($data);
+        LnkProductCategory::insert($data);
     }
 }

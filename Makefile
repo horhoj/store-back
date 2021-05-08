@@ -45,6 +45,9 @@ laravel-passport-install:
 dev-lint:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm composer lint
 
+dev-cs-fix:
+	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm composer cs-fix
+
 #all
 docker-up: docker-down
 	docker-compose up -d --build

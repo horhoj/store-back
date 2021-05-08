@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $products_id
  * @property int $categories_id
  * @property string $description
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|LnkProductCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LnkProductCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LnkProductCategory query()

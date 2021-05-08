@@ -14,6 +14,7 @@ class DebugLog
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -22,6 +23,7 @@ class DebugLog
         $result = $next($request);
         $sql = DB::getQueryLog();
         Log::debug($sql);
+
         return $result;
     }
 }

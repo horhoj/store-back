@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Passport\Passport;
 
 class LoginController extends Controller
 {
@@ -16,6 +15,7 @@ class LoginController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param Carbon $carbon
      * @param Auth $auth
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(Request $request, Carbon $carbon, Auth $auth)

@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\repositories;
 
-
 use App\Models\Product;
-use phpDocumentor\Reflection\Types\Integer;
 
 class ProductRepository
 {
@@ -27,12 +24,14 @@ class ProductRepository
         foreach ($this->searchFields as $searchField) {
             $products = $products->orWhere($searchField, 'like', "%$search%");
         }
+
         return $products->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc');
     }
 
     public function getProduct($id)
     {
         $products = clone $this->product;
+
         return $products->findOrFail($id);
     }
 
@@ -42,15 +41,16 @@ class ProductRepository
         $product = $products->findOrFail($id);
         $product->fill($data);
         $product->save();
-        return ['status' => 'ok'];
 
+        return ['status' => 'ok'];
     }
 
     public function storeProduct($data)
     {
-        $product = new $this->product;
+        $product = new $this->product();
         $product->fill($data);
         $product->save();
+
         return [
             'id' => $product->id
         ];
@@ -59,10 +59,9 @@ class ProductRepository
     public function delete($id)
     {
         $this->product->findOrFail($id)->delete();
+
         return [
             'id'=>$id
         ];
     }
-
-
 }

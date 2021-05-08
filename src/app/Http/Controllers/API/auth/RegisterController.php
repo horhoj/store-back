@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
-
 class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $registerRequest)
@@ -18,7 +17,6 @@ class RegisterController extends Controller
             'email' => $registerRequest->email,
             'password' => Hash::make($registerRequest->password),
         ]);
-
 
         return response()->json($data, Response::HTTP_CREATED);
     }

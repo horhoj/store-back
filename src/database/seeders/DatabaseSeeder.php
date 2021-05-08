@@ -25,4 +25,3 @@ class DatabaseSeeder extends Seeder
         $this->call(LnkProductCategorySeeder::class);
     }
 }
-
