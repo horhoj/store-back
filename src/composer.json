@@ -25,7 +25,8 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "overtrue/phplint": "^2.3"
+        "overtrue/phplint": "^2.3",
+        "friendsofphp/php-cs-fixer": "^3.0"
     },
     "config": {
         "optimize-autoloader": true,
