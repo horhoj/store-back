@@ -50,6 +50,9 @@ dev-lint:
 dev-cs-fix:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm composer cs-fix
 
+dev-psalm:
+	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm composer psalm
+
 dev-clear-temp:
 	-rm -R ./src/temp/.*
 

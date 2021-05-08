@@ -21,12 +21,15 @@
         "doctrine/dbal": "^3.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "laravel/sail": "^1.0.1",
+        "lctrs/psalm-psr-container-plugin": "^1.2",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3",
         "overtrue/phplint": "^2.3",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "phpunit/phpunit": "^9.3.3",
+        "psalm/plugin-phpunit": "^0.15.1",
+        "vimeo/psalm": "^4.7"
     },
     "config": {
         "optimize-autoloader": true,
@@ -64,6 +67,7 @@
             "@php artisan key:generate --ansi"
         ],
         "lint": "phplint",
-        "cs-fix": "php-cs-fixer fix --config=./.php-cs-fixer.php --allow-risky=yes"
+        "cs-fix": "php-cs-fixer fix --config=./.php-cs-fixer.php --allow-risky=yes",
+        "psalm": "psalm --config=psalm.xml"
     }
 }
