@@ -14,19 +14,32 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()
-            ->count(100)->create();
+//        Product::factory()
+//            ->count(100)->create();
+        $data = [
+            [
+                'id' => 1,
+                'title' => 'компьютер Никс 3000',
+                'description' => 'настольный персональный компьютер от компании Никс',
+                'options' => 'model 55h33d',
+                'category_id' => 3,
+            ],
+            [
+                'id' => 2,
+                'title' => 'компьютер Никс 4000',
+                'description' => 'настольный персональный компьютер от компании Никс',
+                'options' => 'model 77h33d',
+                'category_id' => 3,
+            ],
+            [
+                'id' => 3,
+                'title' => 'телефон Самсунг g-500',
+                'description' => 'Мобильный телефон от компании Самсунг',
+                'options' => 'model bb88-9ru',
+                'category_id' => 1,
+            ]
+        ];
 
-//        $data = [];
-//        for ($i = 1; $i <= 98; $i++) {
-//            $numStr = ($i >= 1 && $i < 10) ? '0' . $i : $i;
-//            $data[$i] = [
-//                'id' => $i,
-//                'title' => 't' . $numStr,
-//                'description' => 'd' . $numStr,
-//                'params' => 'p' . $numStr,
-//            ];
-//        }
-//        Product::insert($data);
+        Product::insert($data);
     }
 }

@@ -10,7 +10,12 @@ class ProductRepository
      * @var Product
      */
     private Product $product;
-    private array $searchFields = ['title', 'description', 'options'];
+    private array $searchFields = [
+        'products.title',
+        'products.description',
+        'products.options',
+        'categories.title'
+    ];
 
     public function __construct(Product $product)
     {
@@ -20,10 +25,15 @@ class ProductRepository
     public function getProducts($search, $sort_field, $sort_asc)
     {
         $products = clone $this->product;
-
         foreach ($this->searchFields as $searchField) {
             $products = $products->orWhere($searchField, 'like', "%$search%");
         }
+        $products = $products
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->select([
+                'products.*',
+                'categories.title as category'
+            ]);
 
         return $products->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc');
     }
@@ -61,7 +71,7 @@ class ProductRepository
         $this->product->findOrFail($id)->delete();
 
         return [
-            'id'=>$id
+            'id' => $id
         ];
     }
 }

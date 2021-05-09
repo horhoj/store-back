@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('title', 200);
             $table->text('description')->nullable();
             $table->text('options')->nullable();
+            $table->integer('category_id')->nullable();
         });
     }
 
