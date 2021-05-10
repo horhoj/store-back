@@ -39,12 +39,9 @@ class ProductController extends Controller
         $search = $request['search'] ?? '';
         $sort_field = $request['sort_field'] ?? 'id';
         $sort_asc = $request['sort_asc'] ?? '1';
+        $per_page = $request['per_page'] ?? 10;
 
-        $data = $this->productRepository->getProducts($search, $sort_field, $sort_asc)
-            ->paginate($request['per_page'] ?? 10)
-            ->toArray();
-
-        return $data;
+        return $this->productRepository->getProducts($search, $sort_field, $sort_asc, $per_page);
     }
 
     /**
@@ -64,11 +61,11 @@ class ProductController extends Controller
      *
      * @return string[]
      */
-    public function update(ProductRequest $request)
+    public function update(ProductRequest $request): array
     {
         $id = $request['product'] ?? 0;
         $data = $request->all();
-//        return $id;
+
         return $this->productRepository->updateProduct($id, $data);
     }
 
@@ -77,7 +74,7 @@ class ProductController extends Controller
      *
      * @return array
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): array
     {
         $data = $request->all();
 
@@ -89,7 +86,7 @@ class ProductController extends Controller
      *
      * @return array
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): array
     {
         $id = $request['product'] ?? 0;
 

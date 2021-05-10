@@ -22,30 +22,29 @@ class ProductRepository
         $this->product = $product;
     }
 
-    public function getProducts($search, $sort_field, $sort_asc)
+    public function getProducts($search, $sort_field, $sort_asc, $per_page): array
     {
         $products = clone $this->product;
         foreach ($this->searchFields as $searchField) {
             $products = $products->orWhere($searchField, 'like', "%$search%");
         }
-        $products = $products
+        return $products
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->select([
                 'products.*',
                 'categories.title as category'
-            ]);
-
-        return $products->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc');
+            ])->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc')->paginate($per_page)
+            ->toArray();
     }
 
-    public function getProduct($id)
+    public function getProduct($id): Product
     {
         $products = clone $this->product;
 
         return $products->findOrFail($id);
     }
 
-    public function updateProduct($id, $data)
+    public function updateProduct($id, $data): array
     {
         $products = clone $this->product;
         $product = $products->findOrFail($id);
@@ -55,7 +54,7 @@ class ProductRepository
         return ['status' => 'ok'];
     }
 
-    public function storeProduct($data)
+    public function storeProduct($data): array
     {
         $product = new $this->product();
         $product->fill($data);
@@ -66,7 +65,7 @@ class ProductRepository
         ];
     }
 
-    public function delete($id)
+    public function delete($id): array
     {
         $this->product->findOrFail($id)->delete();
 
