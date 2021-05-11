@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\repositories\ProductRepository;
+use App\Types\APIIndexRequestParams;
 use Illuminate\Http\Request;
 
 /**
@@ -18,6 +19,7 @@ class ProductController extends Controller
      * @var ProductRepository
      */
     private ProductRepository $productRepository;
+    public const productId = 'product';
 
     /**
      * ProductController constructor.
@@ -34,26 +36,18 @@ class ProductController extends Controller
      *
      * @return array
      */
-    public function index(Request $request)
+    public function index(Request $request): array
     {
-        $search = $request['search'] ?? '';
-        $sort_field = $request['sort_field'] ?? 'id';
-        $sort_asc = $request['sort_asc'] ?? '1';
-        $per_page = $request['per_page'] ?? 10;
+        $APIIndexRequestParams = new APIIndexRequestParams($request);
 
-        return $this->productRepository->getProducts($search, $sort_field, $sort_asc, $per_page);
+        return $this->productRepository->getList($APIIndexRequestParams);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return \App\Models\Product|\App\Models\Product[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
-     */
-    public function show(Request $request)
+    public function show(Request $request): array
     {
-        $id = $request['product'] ?? 0;
+        $id = $request[self::productId] ?? 0;
 
-        return $this->productRepository->getProduct($id);
+        return $this->productRepository->get($id);
     }
 
     /**
@@ -63,10 +57,10 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request): array
     {
-        $id = $request['product'] ?? 0;
+        $id = $request[self::productId] ?? 0;
         $data = $request->all();
 
-        return $this->productRepository->updateProduct($id, $data);
+        return $this->productRepository->update($id, $data);
     }
 
     /**
@@ -78,7 +72,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        return $this->productRepository->storeProduct($data);
+        return $this->productRepository->store($data);
     }
 
     /**
@@ -88,7 +82,7 @@ class ProductController extends Controller
      */
     public function destroy(Request $request): array
     {
-        $id = $request['product'] ?? 0;
+        $id = $request[self::productId] ?? 0;
 
         return $this->productRepository->delete($id);
     }

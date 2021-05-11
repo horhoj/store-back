@@ -3,8 +3,9 @@
 namespace App\repositories;
 
 use App\Models\Product;
+use App\Types\APIIndexRequestParams;
 
-class ProductRepository
+class ProductRepository implements IEntityRepository
 {
     /**
      * @var Product
@@ -22,29 +23,39 @@ class ProductRepository
         $this->product = $product;
     }
 
-    public function getProducts($search, $sort_field, $sort_asc, $per_page): array
+    public function getList(APIIndexRequestParams $APIIndexRequestParams): array
     {
         $products = clone $this->product;
         foreach ($this->searchFields as $searchField) {
-            $products = $products->orWhere($searchField, 'like', "%$search%");
+            $products = $products->orWhere(
+                $searchField,
+                'like',
+                "%" . $APIIndexRequestParams->getSearch() . "%"
+            );
         }
+
         return $products
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->select([
                 'products.*',
                 'categories.title as category'
-            ])->orderBy($sort_field, $sort_asc === '1' ? 'asc' : 'desc')->paginate($per_page)
+            ])
+            ->orderBy(
+                $APIIndexRequestParams->getSortField(),
+                $APIIndexRequestParams->getSortAsc() === '1' ? 'asc' : 'desc'
+            )
+            ->paginate($APIIndexRequestParams->getPerPage())
             ->toArray();
     }
 
-    public function getProduct($id): Product
+    public function get($id): array
     {
         $products = clone $this->product;
 
-        return $products->findOrFail($id);
+        return $products->findOrFail($id)->toArray();
     }
 
-    public function updateProduct($id, $data): array
+    public function update($id, $data): array
     {
         $products = clone $this->product;
         $product = $products->findOrFail($id);
@@ -54,7 +65,7 @@ class ProductRepository
         return ['status' => 'ok'];
     }
 
-    public function storeProduct($data): array
+    public function store($data): array
     {
         $product = new $this->product();
         $product->fill($data);

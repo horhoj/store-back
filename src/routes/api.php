@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\DebugLog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,7 @@ Route::prefix('v1')->namespace('App\Http\Controllers\API')->group(function () {
             });
         });
 
-        Route::middleware(\App\Http\Middleware\DebugLog::class)->group(function () {
+        Route::middleware(DebugLog::class)->group(function () {
             Route::apiResource('/products', 'ProductController');
             Route::apiResource('/categories', 'CategoryController');
         });
