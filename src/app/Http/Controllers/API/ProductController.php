@@ -19,7 +19,7 @@ class ProductController extends Controller
      * @var ProductRepository
      */
     private ProductRepository $productRepository;
-    public const productId = 'product';
+    public const PRODUCT_ID = 'product';
 
     /**
      * ProductController constructor.
@@ -82,7 +82,7 @@ class ProductController extends Controller
      */
     public function destroy(Request $request): array
     {
-        $id = $request[self::productId] ?? 0;
+        $id = $request[self::PRODUCT_ID] ?? 0;
 
         return $this->productRepository->delete($id);
     }
