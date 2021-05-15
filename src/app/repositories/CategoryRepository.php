@@ -4,29 +4,18 @@ namespace App\repositories;
 
 use App\Models\Category;
 
-class CategoryRepository
+class CategoryRepository extends AbstractEntityRepository
 {
     /**
      * @var Category
      */
-    private Category $category;
 
     public function __construct(Category $category)
     {
-        $this->category = $category;
-    }
-
-    public function getCategory(): array
-    {
-        $data = $this->category::all()->toArray();
-//        $data = [
-//          [
-//              'id' => 1,
-//              'title'=> true,
-//              'description' => 'description 1',
-//          ]
-//        ];
-
-        return $data;
+        $this->entity = $category;
+        $this->searchFields = [
+            'title',
+            'description',
+        ];
     }
 }
