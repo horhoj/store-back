@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function show(Request $request): array
     {
-        $id = $request[self::productId] ?? 0;
+        $id = $request[self::PRODUCT_ID] ?? 0;
 
         return $this->productRepository->get($id);
     }
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request): array
     {
-        $id = $request[self::productId] ?? 0;
+        $id = $request[self::PRODUCT_ID] ?? 0;
         $data = $request->all();
 
         return $this->productRepository->update($id, $data);
