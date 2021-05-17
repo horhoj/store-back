@@ -2,7 +2,7 @@ db_host=mariadb
 db_name=db
 db_name_test=db_test
 db_user=root
-db_password=qwerty
+db_password=XurafardJuliatusDefendika@109
 
 init: docker-up composer-install db-create laravel-db-prepare laravel-permission
 

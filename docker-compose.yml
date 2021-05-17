@@ -30,6 +30,8 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
       PHP_IDE_CONFIG: "serverName=Docker"
+      DB_PASSWORD: XurafardJuliatusDefendika@109
+      DB_USERNAME: root
     volumes:
       - ./src:/var/www
       - /home/cool29/tmp_composer:/.composer
@@ -42,22 +44,22 @@ services:
     volumes:
       - ./db/:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: qwerty
+      MYSQL_ROOT_PASSWORD: XurafardJuliatusDefendika@109
     ports:
       - 3306:3306
     networks:
       - internal
   #database control
-  phpmyadmin:
-    build:
-      context: docker/phpmyadmin
-    links:
-      - mariadb:db
-    ports:
-      - 8080:80
-    environment:
-      MYSQL_ROOT_PASSWORD: qwerty
-    depends_on:
-      - mariadb
-    networks:
-      - internal
+#  phpmyadmin:
+#    build:
+#      context: docker/phpmyadmin
+#    links:
+#      - mariadb:db
+#    ports:
+#      - 8080:80
+#    environment:
+#      MYSQL_ROOT_PASSWORD: XurafardJuliatusDefendika@109
+#    depends_on:
+#      - mariadb
+#    networks:
+#      - internal
