@@ -14,6 +14,7 @@ class CategoryRepository extends AbstractEntityRepository
     {
         $this->entity = $category;
         $this->searchFields = [
+            'id',
             'title',
             'description',
         ];

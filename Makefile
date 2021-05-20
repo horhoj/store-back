@@ -42,7 +42,7 @@ laravel-db-prepare: laravel-migrate-and-seed laravel-passport-install
 laravel-passport-install:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm php artisan passport:install
 
-check: dev-clear-temp dev-lint dev-cs-fix
+lint: dev-clear-temp dev-lint dev-cs-fix
 
 dev-lint:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm composer lint

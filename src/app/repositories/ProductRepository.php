@@ -14,6 +14,7 @@ class ProductRepository extends AbstractEntityRepository
     {
         $this->entity = $product;
         $this->searchFields = [
+            'id',
             'title',
             'description',
             'options',
