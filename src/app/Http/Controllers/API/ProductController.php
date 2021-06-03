@@ -73,7 +73,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        return $this->productRepository->store($data);
+        return $this->productRepository->store($data, self::RELATIONS);
     }
 
     /**

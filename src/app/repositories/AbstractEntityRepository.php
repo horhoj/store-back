@@ -62,11 +62,17 @@ abstract class AbstractEntityRepository
         return ['id' => $entity->id];
     }
 
-    public function store($data): array
+    public function store($data, array $relations = null): array
     {
         $entity = new $this->entity();
         $entity->fill($data);
         $entity->save();
+
+        if ($relations) {
+            foreach ($relations as $relation) {
+                $entity->$relation()->sync($data[$relation]);
+            }
+        }
 
         return [
             'id' => $entity->id
