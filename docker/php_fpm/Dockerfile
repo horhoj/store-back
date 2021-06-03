@@ -18,6 +18,8 @@ RUN pecl install xdebug-2.9.2 && docker-php-ext-enable xdebug
 
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
+RUN mkdir -p /.config/psysh && chmod -R 777 /.config/psysh
+
 WORKDIR /var/www/
 
 CMD ["php-fpm"]

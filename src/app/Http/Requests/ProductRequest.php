@@ -25,6 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
+//            'categories' => 'required|array|nullable'
         ];
     }
 }

@@ -2,35 +2,52 @@
 
 namespace App\Models;
 
+use Database\Factories\ProductFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Product
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $title
  * @property string $description
  * @property string $params
- * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereParams($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
- * @mixin \Eloquent
+ *
+ * @method static Builder|Product newModelQuery()
+ * @method static Builder|Product newQuery()
+ * @method static Builder|Product query()
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereDescription($value)
+ * @method static Builder|Product whereId($value)
+ * @method static Builder|Product whereParams($value)
+ * @method static Builder|Product whereTitle($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @mixin Eloquent
+ *
  * @property string|null $options
- * @method static \Database\Factories\ProductFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereOptions($value)
+ *
+ * @method static ProductFactory factory(...$parameters)
+ * @method static Builder|Product whereOptions($value)
+ *
+ * @property-read Collection|Category[] $categories
+ * @property-read int|null $categories_count
  */
 class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'options'];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

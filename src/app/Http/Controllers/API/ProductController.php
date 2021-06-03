@@ -19,7 +19,8 @@ class ProductController extends Controller
      * @var ProductRepository
      */
     private ProductRepository $productRepository;
-    public const PRODUCT_ID = 'product';
+    private const PRODUCT_ID = 'product';
+    private const RELATIONS = ['categories'];
 
     /**
      * ProductController constructor.
@@ -40,14 +41,14 @@ class ProductController extends Controller
     {
         $APIIndexRequestParams = new APIIndexRequestParams($request);
 
-        return $this->productRepository->getList($APIIndexRequestParams);
+        return $this->productRepository->getList($APIIndexRequestParams, ['categories']);
     }
 
     public function show(Request $request): array
     {
         $id = $request[self::PRODUCT_ID] ?? 0;
 
-        return $this->productRepository->get($id);
+        return $this->productRepository->get($id, self::RELATIONS);
     }
 
     /**
@@ -60,7 +61,7 @@ class ProductController extends Controller
         $id = $request[self::PRODUCT_ID] ?? 0;
         $data = $request->all();
 
-        return $this->productRepository->update($id, $data);
+        return $this->productRepository->update($id, $data, self::RELATIONS);
     }
 
     /**

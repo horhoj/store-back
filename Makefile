@@ -56,6 +56,12 @@ dev-psalm:
 dev-clear-temp:
 	-rm -R ./src/temp/.*
 
+dev-router-list:
+	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan route:list
+
+dev-tinker:
+	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan tinker
+
 #all
 docker-up: docker-down
 	docker-compose up -d --build
@@ -79,5 +85,4 @@ permission-777:
 console-php:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  php_fpm /bin/bash
 
-get-router-list:
-	docker-compose exec --user $(shell id -u):$(shell id -g) php_fpm php artisan route:list
+
