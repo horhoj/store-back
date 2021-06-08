@@ -24,8 +24,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'title' => 'category title № ' . random_int(100, 999),
-            'description' => 'category description № '. random_int(100, 999),
+            'title' => 'Категория ' . random_int(100, 999),
+            'description' => 'Описание категории '. random_int(100, 999),
         ];
     }
 }

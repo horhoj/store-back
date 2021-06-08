@@ -24,8 +24,8 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'title' => 'product title № ' . random_int(10, 99),
-            'description' => 'product description № ' . random_int(10, 99),
+            'title' => 'Товар ' . random_int(10, 99),
+            'description' => 'Описание товара ' . random_int(10, 99),
             'options' => random_int(1000, 9999),
         ];
     }
