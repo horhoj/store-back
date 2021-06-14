@@ -41,7 +41,7 @@ class ProductController extends Controller
     {
         $APIIndexRequestParams = new APIIndexRequestParams($request);
 
-        return $this->productRepository->getList($APIIndexRequestParams, ['categories']);
+        return $this->productRepository->getList($APIIndexRequestParams, self::RELATIONS);
     }
 
     public function show(Request $request): array
