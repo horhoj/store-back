@@ -34,7 +34,7 @@ services:
       DB_USERNAME: root
     volumes:
       - ./src:/var/www
-      - /home/cool29/tmp_composer:/.composer
+      - ./composer:/.composer
     networks:
       - internal
   #database
